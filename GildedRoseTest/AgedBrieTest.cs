@@ -41,6 +41,27 @@ namespace GildedRoseTest
             Assert.AreEqual(50, item.Quality);
         }
 
+
+        [Test]
+        public void ShouldBeTrue_WhenItemNameIsAgedBrie()
+        {
+            Item item = InitAgredBrie(0, 0);
+
+            bool result = GildedRose.GildedRose.IsAgedBrie(item.Name);
+
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void ShouldBeFalse_WhenItemNameIsAnythingButAgedBrie()
+        {
+            Item item = new Item() { Name = "test" };
+
+            bool result = GildedRose.GildedRose.IsAgedBrie(item.Name);
+
+            Assert.IsFalse(result);
+        }
+
         private static Item InitAgredBrie(int quality, int sellin)
         {
             return new Item()

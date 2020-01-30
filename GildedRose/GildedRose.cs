@@ -16,7 +16,7 @@ namespace GildedRose
         {
             for (var i = 0; i < Items.Count; i++)
             {
-                if (Items[i].Name != "Aged Brie" && !IsBackstagePass(Items[i].Name))
+                if (!IsAgedBrie(Items[i].Name) && !IsBackstagePass(Items[i].Name))
                 {
                     if (Items[i].Quality > 0)
                     {
@@ -60,7 +60,7 @@ namespace GildedRose
 
                 if (Items[i].SellIn < 0)
                 {
-                    if (Items[i].Name != "Aged Brie")
+                    if (!IsAgedBrie(Items[i].Name))
                     {
                         if (!IsBackstagePass(Items[i].Name))
                         {
@@ -86,6 +86,11 @@ namespace GildedRose
                     }
                 }
             }
+        }
+
+        public static bool IsAgedBrie(string name)
+        {
+            return name == "Aged Brie";
         }
 
         public static bool IsBackstagePass(string name)
