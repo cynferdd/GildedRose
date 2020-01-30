@@ -18,12 +18,9 @@ namespace GildedRose
             {
                 if (!IsAgedBrie(Items[i].Name) && !IsBackstagePass(Items[i].Name))
                 {
-                    if (Items[i].Quality > 0)
+                    if (Items[i].Quality > 0 && !IsSulfuras(Items[i].Name))
                     {
-                        if (!IsSulfuras(Items[i].Name))
-                        {
-                            Items[i].Quality = Items[i].Quality - 1;
-                        }
+                        Items[i].Quality = Items[i].Quality - 1;
                     }
                 }
                 else
@@ -64,12 +61,9 @@ namespace GildedRose
                     {
                         if (!IsBackstagePass(Items[i].Name))
                         {
-                            if (Items[i].Quality > 0)
+                            if (Items[i].Quality > 0 && !IsSulfuras(Items[i].Name))
                             {
-                                if (!IsSulfuras(Items[i].Name))
-                                {
-                                    Items[i].Quality = Items[i].Quality - 1;
-                                }
+                                Items[i].Quality = Items[i].Quality - 1;
                             }
                         }
                         else
