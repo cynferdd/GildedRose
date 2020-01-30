@@ -18,10 +18,7 @@ namespace GildedRose
             {
                 if (!IsAgedBrie(Items[i].Name) && !IsBackstagePass(Items[i].Name))
                 {
-                    if (ShouldDecreaseQuality(Items[i]))
-                    {
-                        Items[i].Quality = Items[i].Quality - 1;
-                    }
+                    Items[i].Quality = DecreaseQualityIfApplicable(Items[i]);
                 }
                 else
                 {
@@ -61,10 +58,7 @@ namespace GildedRose
                     {
                         if (!IsBackstagePass(Items[i].Name))
                         {
-                            if (ShouldDecreaseQuality(Items[i]))
-                            {
-                                Items[i].Quality = Items[i].Quality - 1;
-                            }
+                            Items[i].Quality = DecreaseQualityIfApplicable(Items[i]);
                         }
                         else
                         {
@@ -79,6 +73,18 @@ namespace GildedRose
                         }
                     }
                 }
+            }
+        }
+
+        public static int DecreaseQualityIfApplicable(Item item)
+        {
+            if (ShouldDecreaseQuality(item))
+            {
+                return item.Quality - 1;
+            }
+            else
+            {
+                return item.Quality;
             }
         }
 
