@@ -23,26 +23,19 @@ namespace GildedRose
                 }
                 else
                 {
+                    IncreaseQualityUntil50(item);
                     if (item.Quality < 50)
                     {
-                        item.Quality = item.Quality + 1;
-
                         if (IsBackstagePass(item.Name))
                         {
                             if (item.SellIn < 11)
                             {
-                                if (item.Quality < 50)
-                                {
-                                    item.Quality = item.Quality + 1;
-                                }
+                                IncreaseQualityUntil50(item);
                             }
 
                             if (item.SellIn < 6)
                             {
-                                if (item.Quality < 50)
-                                {
-                                    item.Quality = item.Quality + 1;
-                                }
+                                IncreaseQualityUntil50(item);
                             }
                         }
                     }
@@ -68,12 +61,17 @@ namespace GildedRose
                     }
                     else
                     {
-                        if (item.Quality < 50)
-                        {
-                            item.Quality = item.Quality + 1;
-                        }
+                        IncreaseQualityUntil50(item);
                     }
                 }
+            }
+        }
+
+        public static void IncreaseQualityUntil50(Item item)
+        {
+            if (item.Quality < 50)
+            {
+                item.Quality = item.Quality + 1;
             }
         }
 

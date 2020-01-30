@@ -132,5 +132,27 @@ namespace GildedRoseTest
 
             Assert.AreEqual(quality, result);
         }
+
+        [Test]
+        public void ShouldIncreaseQuality_WhenQualityUnder50()
+        {
+            Item item = new Item() { Quality = 7 };
+
+            GildedRose.GildedRose.IncreaseQualityUntil50(item);
+
+            Assert.AreEqual(8, item.Quality);
+        }
+
+        [Test]
+        [TestCase(50)]
+        [TestCase(500)]
+        public void ShouldNotChangeQuality_WhenQualityIs50OrAbove(int quality)
+        {
+            Item item = new Item() { Quality = quality };
+
+            GildedRose.GildedRose.IncreaseQualityUntil50(item);
+
+            Assert.AreEqual(quality, item.Quality);
+        }
     }
 }
