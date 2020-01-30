@@ -16,60 +16,61 @@ namespace GildedRose
         {
             for (var i = 0; i < Items.Count; i++)
             {
-                if (!IsAgedBrie(Items[i].Name) && !IsBackstagePass(Items[i].Name))
+                Item item = Items[i];
+                if (!IsAgedBrie(item.Name) && !IsBackstagePass(item.Name))
                 {
-                    Items[i].Quality = DecreaseQualityIfApplicable(Items[i]);
+                    item.Quality = DecreaseQualityIfApplicable(item);
                 }
                 else
                 {
-                    if (Items[i].Quality < 50)
+                    if (item.Quality < 50)
                     {
-                        Items[i].Quality = Items[i].Quality + 1;
+                        item.Quality = item.Quality + 1;
 
-                        if (IsBackstagePass(Items[i].Name))
+                        if (IsBackstagePass(item.Name))
                         {
-                            if (Items[i].SellIn < 11)
+                            if (item.SellIn < 11)
                             {
-                                if (Items[i].Quality < 50)
+                                if (item.Quality < 50)
                                 {
-                                    Items[i].Quality = Items[i].Quality + 1;
+                                    item.Quality = item.Quality + 1;
                                 }
                             }
 
-                            if (Items[i].SellIn < 6)
+                            if (item.SellIn < 6)
                             {
-                                if (Items[i].Quality < 50)
+                                if (item.Quality < 50)
                                 {
-                                    Items[i].Quality = Items[i].Quality + 1;
+                                    item.Quality = item.Quality + 1;
                                 }
                             }
                         }
                     }
                 }
 
-                if (!IsSulfuras(Items[i].Name))
+                if (!IsSulfuras(item.Name))
                 {
-                    Items[i].SellIn = Items[i].SellIn - 1;
+                    item.SellIn = item.SellIn - 1;
                 }
 
-                if (Items[i].SellIn < 0)
+                if (item.SellIn < 0)
                 {
-                    if (!IsAgedBrie(Items[i].Name))
+                    if (!IsAgedBrie(item.Name))
                     {
-                        if (!IsBackstagePass(Items[i].Name))
+                        if (!IsBackstagePass(item.Name))
                         {
-                            Items[i].Quality = DecreaseQualityIfApplicable(Items[i]);
+                            item.Quality = DecreaseQualityIfApplicable(item);
                         }
                         else
                         {
-                            Items[i].Quality = Items[i].Quality - Items[i].Quality;
+                            item.Quality = item.Quality - item.Quality;
                         }
                     }
                     else
                     {
-                        if (Items[i].Quality < 50)
+                        if (item.Quality < 50)
                         {
-                            Items[i].Quality = Items[i].Quality + 1;
+                            item.Quality = item.Quality + 1;
                         }
                     }
                 }
