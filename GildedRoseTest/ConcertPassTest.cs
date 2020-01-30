@@ -61,6 +61,28 @@ namespace GildedRoseTest
 
             Assert.AreEqual(expectedResult, item.Quality);
         }
+
+
+        [Test]
+        public void ShouldBeTrue_WhenItemNameIsBackstagePass()
+        {
+            Item item = InitBackstagePass(0);
+
+            bool result = GildedRose.GildedRose.IsBackstagePass(item.Name);
+
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void ShouldBeFalse_WhenItemNameIsAnythingButBackstagePass()
+        {
+            Item item = new Item() { Name = "test" };
+
+            bool result = GildedRose.GildedRose.IsBackstagePass(item.Name);
+
+            Assert.IsFalse(result);
+        }
+
         private static Item InitBackstagePass(int sellin)
         {
 

@@ -16,11 +16,11 @@ namespace GildedRose
         {
             for (var i = 0; i < Items.Count; i++)
             {
-                if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
+                if (Items[i].Name != "Aged Brie" && !IsBackstagePass(Items[i].Name))
                 {
                     if (Items[i].Quality > 0)
                     {
-                        if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
+                        if (!IsSulfuras(Items[i].Name))
                         {
                             Items[i].Quality = Items[i].Quality - 1;
                         }
@@ -32,7 +32,7 @@ namespace GildedRose
                     {
                         Items[i].Quality = Items[i].Quality + 1;
 
-                        if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
+                        if (IsBackstagePass(Items[i].Name))
                         {
                             if (Items[i].SellIn < 11)
                             {
@@ -53,7 +53,7 @@ namespace GildedRose
                     }
                 }
 
-                if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
+                if (!IsSulfuras(Items[i].Name))
                 {
                     Items[i].SellIn = Items[i].SellIn - 1;
                 }
@@ -62,11 +62,11 @@ namespace GildedRose
                 {
                     if (Items[i].Name != "Aged Brie")
                     {
-                        if (Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
+                        if (!IsBackstagePass(Items[i].Name))
                         {
                             if (Items[i].Quality > 0)
                             {
-                                if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
+                                if (!IsSulfuras(Items[i].Name))
                                 {
                                     Items[i].Quality = Items[i].Quality - 1;
                                 }
@@ -86,6 +86,16 @@ namespace GildedRose
                     }
                 }
             }
+        }
+
+        public static bool IsBackstagePass(string name)
+        {
+            return name == "Backstage passes to a TAFKAL80ETC concert";
+        }
+
+        public static bool IsSulfuras(string name)
+        {
+            return name == "Sulfuras, Hand of Ragnaros";
         }
     }
 }
