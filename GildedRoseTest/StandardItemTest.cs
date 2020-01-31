@@ -13,7 +13,7 @@ namespace GildedRoseTest
         {
             Item item = InitTestItem(0, 4);
 
-            UpdateQualityItem(item);
+            UpdateItem(item);
 
             Assert.AreEqual(0, item.Quality);
         }
@@ -25,7 +25,7 @@ namespace GildedRoseTest
         {
             Item item = InitTestItem(1, 4);
 
-            UpdateQualityItem(item);
+            UpdateItem(item);
 
             Assert.AreEqual(0, item.Quality);
         }
@@ -38,7 +38,7 @@ namespace GildedRoseTest
             Item item = InitTestItem(2, 0);
             
 
-            UpdateQualityItem(item);
+            UpdateItem(item);
 
             Assert.AreEqual(-1, item.SellIn);
         }
@@ -50,7 +50,7 @@ namespace GildedRoseTest
         {
             Item item = InitTestItem(2, sellin);
             
-            UpdateQualityItem(item);
+            UpdateItem(item);
 
             Assert.AreEqual(expectedResult, item.Quality);
         }

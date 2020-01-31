@@ -14,7 +14,7 @@ namespace GildedRoseTest
         {
             Item item = InitSulfuras();
 
-            UpdateQualityItem(item);
+            UpdateItem(item);
 
             Assert.AreEqual(43, item.Quality);
         }
@@ -24,7 +24,7 @@ namespace GildedRoseTest
         {
             Item item = InitSulfuras();
 
-            UpdateQualityItem(item);
+            UpdateItem(item);
 
             Assert.AreEqual(4, item.SellIn);
         }

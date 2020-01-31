@@ -13,7 +13,7 @@ namespace GildedRoseTest
         {
             Item item = InitAgredBrie(2, 3);
 
-            UpdateQualityItem(item);
+            UpdateItem(item);
 
             Assert.AreEqual(3, item.Quality);
         }
@@ -24,7 +24,7 @@ namespace GildedRoseTest
         {
             Item item = InitAgredBrie(2, 0);
 
-            UpdateQualityItem(item);
+            UpdateItem(item);
 
             Assert.AreEqual(4, item.Quality);
         }
@@ -36,7 +36,7 @@ namespace GildedRoseTest
         {
             Item item = InitAgredBrie(50, 3);
 
-            UpdateQualityItem(item);
+            UpdateItem(item);
 
             Assert.AreEqual(50, item.Quality);
         }

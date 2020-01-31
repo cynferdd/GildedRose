@@ -7,7 +7,7 @@ namespace GildedRose
     public class BackstagePassProcess : ProcessBase
     {
         public override string Name { get { return "Backstage passes to a TAFKAL80ETC concert"; } }
-        public override void UpdateQuality(Item item)
+        protected override void UpdateQuality(Item item)
         {
             if (item.SellIn <= 0)
             {

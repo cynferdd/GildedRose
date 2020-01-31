@@ -17,7 +17,7 @@ namespace GildedRoseTest
         {
             Item item = InitBackstagePass(sellin);
 
-            UpdateQualityItem(item);
+            UpdateItem(item);
 
             Assert.AreEqual(expectedResult, item.Quality);
         }
@@ -30,7 +30,7 @@ namespace GildedRoseTest
         {
             Item item = InitBackstagePass(sellin);
 
-            UpdateQualityItem(item);
+            UpdateItem(item);
 
             Assert.AreEqual(expectedResult, item.Quality);
         }
@@ -45,7 +45,7 @@ namespace GildedRoseTest
         {
             Item item = InitBackstagePass(sellin);
 
-            UpdateQualityItem(item);
+            UpdateItem(item);
 
             Assert.AreEqual(expectedResult, item.Quality);
         }
@@ -57,7 +57,7 @@ namespace GildedRoseTest
         {
             Item item = InitBackstagePass(sellin);
 
-            UpdateQualityItem(item);
+            UpdateItem(item);
 
             Assert.AreEqual(expectedResult, item.Quality);
         }

@@ -6,6 +6,9 @@ namespace GildedRose
 {
     public abstract class ProcessBase
     {
+
+        public abstract string Name { get; }
+
         public static void IncreaseQualityUntil50(Item item)
         {
             if (item.Quality < 50)
@@ -22,11 +25,16 @@ namespace GildedRose
             }
         }
 
-        public abstract void UpdateQuality(Item item);
+        public void Update(Item item)
+        {
+            UpdateQuality(item);
 
-        public abstract string Name { get; }
+            UpdateSellin(item);
+        }
+        protected abstract void UpdateQuality(Item item);
+               
 
-        public virtual void UpdateSellin(Item item)
+        protected virtual void UpdateSellin(Item item)
         {
             item.SellIn = item.SellIn - 1;
         }
