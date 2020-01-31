@@ -16,12 +16,12 @@ namespace GildedRose
             else
             {
                 IncreaseQualityUntil50(item);
-                if (item.SellIn < 11)
+                if (item.SellIn <= 10)
                 {
                     IncreaseQualityUntil50(item);
                 }
 
-                if (item.SellIn < 6)
+                if (item.SellIn <= 5)
                 {
                     IncreaseQualityUntil50(item);
                 }
