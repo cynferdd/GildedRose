@@ -8,7 +8,7 @@ namespace GildedRose
     {
         public override string Name { get { return ""; } }
 
-        public override void Update(Item item)
+        public override void UpdateQuality(Item item)
         {
             DecreaseQualityUntil0(item);
             if (item.SellIn <= 0)

@@ -8,7 +8,7 @@ namespace GildedRose
     {
         public override string Name { get { return "Aged Brie"; } }
 
-        public override void Update(Item item)
+        public override void UpdateQuality(Item item)
         {
             IncreaseQualityUntil50(item);
             if (item.SellIn <= 0)

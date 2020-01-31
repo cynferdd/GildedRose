@@ -30,15 +30,15 @@ namespace GildedRose
                 {
                     if (item.Name == agedBrie.Name)
                     {
-                        agedBrie.Update(item);
+                        agedBrie.UpdateQuality(item);
                     }
                     else if (item.Name == backstagePass.Name)
                     {
-                        backstagePass.Update(item);
+                        backstagePass.UpdateQuality(item);
                     }
                     else
                     {
-                        standardItem.Update(item);
+                        standardItem.UpdateQuality(item);
                     }
 
                     item.SellIn = item.SellIn - 1;

@@ -22,8 +22,13 @@ namespace GildedRose
             }
         }
 
-        public abstract void Update(Item item);
+        public abstract void UpdateQuality(Item item);
 
         public abstract string Name { get; }
+
+        public virtual void UpdateSellin(Item item)
+        {
+            item.SellIn = item.SellIn - 1;
+        }
     }
 }
