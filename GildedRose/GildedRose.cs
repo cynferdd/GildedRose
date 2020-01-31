@@ -17,7 +17,8 @@ namespace GildedRose
                 new AgedBrieProcess(),
                 new BackstagePassProcess(),
                 new StandardProcess(),
-                new SulfurasProcess()
+                new SulfurasProcess(),
+                new ConjuredProcess()
             };
         }
 

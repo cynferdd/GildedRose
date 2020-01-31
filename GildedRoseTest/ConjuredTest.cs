@@ -1,12 +1,14 @@
-using GildedRose;
+﻿using GildedRose;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace GildedRoseTest
 {
-    public class StandardItemTest : BaseTest
+    public class ConjuredTest : BaseTest
     {
-        
+
 
         [Test]
         public void ShouldNotDecreaseQuality_WhenQualityAt0()
@@ -18,25 +20,25 @@ namespace GildedRoseTest
             Assert.AreEqual(0, item.Quality);
         }
 
-        
+
 
         [Test]
         public void ShouldDecreaseQuality_WhenQualityAbove0()
         {
-            Item item = InitTestItem(1, 4);
+            Item item = InitTestItem(3, 4);
 
             UpdateItem(item);
 
-            Assert.AreEqual(0, item.Quality);
+            Assert.AreEqual(1, item.Quality);
         }
 
-        
+
 
         [Test]
         public void ShouldDecreaseSellIn_WhenQualityUpdated()
         {
-            Item item = InitTestItem(2, 0);
-            
+            Item item = InitTestItem(4, 0);
+
 
             UpdateItem(item);
 
@@ -44,23 +46,23 @@ namespace GildedRoseTest
         }
 
         [Test]
-        [TestCase(-1, 0)]
-        [TestCase(0, 0)]
-        public void ShouldDecreaseDoubleQuality_WhenSellinIsNegativeOr0(int sellin, int expectedResult)
+        [TestCase(-1)]
+        [TestCase(0)]
+        public void ShouldDecreaseQuadrupleQuality_WhenSellinIsNegativeOr0(int sellin)
         {
-            Item item = InitTestItem(2, sellin);
-            
+            Item item = InitTestItem(6, sellin);
+
             UpdateItem(item);
 
-            Assert.AreEqual(expectedResult, item.Quality);
+            Assert.AreEqual(2, item.Quality);
         }
 
-        
+
         private static Item InitTestItem(int quality, int sellin)
         {
             return new Item()
             {
-                Name = "test",
+                Name = "Conjured",
                 Quality = quality,
                 SellIn = sellin
             };
