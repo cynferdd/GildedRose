@@ -7,9 +7,16 @@ namespace GildedRose
     public class GildedRose
     {
         IList<Item> Items;
+        private readonly ProcessBase agedBrie;
+        private readonly ProcessBase backstagePass;
+        private readonly ProcessBase standardItem;
+
         public GildedRose(IList<Item> Items)
         {
             this.Items = Items;
+            agedBrie = new AgedBrieProcess();
+            backstagePass = new BackstagePassProcess();
+            standardItem = new StandardProcess();
         }
 
         public void UpdateQuality()
@@ -21,15 +28,15 @@ namespace GildedRose
                 {
                     if (IsAgedBrie(item.Name))
                     {
-                        UpdateWhenAgedBrie(item);
+                        agedBrie.Update(item);
                     }
                     else if (IsBackstagePass(item.Name))
                     {
-                        UpdateWhenBackstagePass(item);
+                        backstagePass.Update(item);
                     }
                     else
                     {
-                        UpdateWhenStandardItem(item);
+                        standardItem.Update(item);
                     }
 
                     item.SellIn = item.SellIn - 1;
@@ -37,63 +44,7 @@ namespace GildedRose
             }
         }
 
-        private static void UpdateWhenStandardItem(Item item)
-        {
-            DecreaseQualityUntil0(item);
-            if (item.SellIn <= 0)
-            {
-                DecreaseQualityUntil0(item);
-            }
-        }
-
-        private static void UpdateWhenBackstagePass(Item item)
-        {
-            if (item.SellIn <= 0)
-            {
-                item.Quality = 0;
-            }
-            else
-            {
-                IncreaseQualityUntil50(item);
-                if (item.SellIn < 11)
-                {
-                    IncreaseQualityUntil50(item);
-                }
-
-                if (item.SellIn < 6)
-                {
-                    IncreaseQualityUntil50(item);
-                }
-            }
-        }
-
-        private static void UpdateWhenAgedBrie(Item item)
-        {
-            IncreaseQualityUntil50(item);
-            if (item.SellIn <= 0)
-            {
-                IncreaseQualityUntil50(item);
-            }
-        }
-
-        public static void IncreaseQualityUntil50(Item item)
-        {
-            if (item.Quality < 50)
-            {
-                item.Quality = item.Quality + 1;
-            }
-        }
-
-        public static void DecreaseQualityUntil0(Item item)
-        {
-            if (item.Quality > 0)
-            {
-                item.Quality = item.Quality - 1;
-            }
-        }
-
         
-
         public static bool IsAgedBrie(string name)
         {
             return name == "Aged Brie";

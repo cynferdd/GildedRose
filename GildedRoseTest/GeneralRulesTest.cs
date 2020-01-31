@@ -18,7 +18,7 @@ namespace GildedRoseTest
                 Quality = 2
             };
 
-            GildedRose.GildedRose.DecreaseQualityUntil0(item);
+            ProcessBase.DecreaseQualityUntil0(item);
 
             Assert.AreEqual(1, item.Quality);
         }
@@ -35,7 +35,7 @@ namespace GildedRoseTest
                 Quality = 0
             };
 
-            GildedRose.GildedRose.DecreaseQualityUntil0(item);
+            ProcessBase.DecreaseQualityUntil0(item);
 
             Assert.AreEqual(0, item.Quality);
         }
@@ -51,7 +51,7 @@ namespace GildedRoseTest
                 Quality = -1
             };
 
-            GildedRose.GildedRose.DecreaseQualityUntil0(item);
+            ProcessBase.DecreaseQualityUntil0(item);
 
             Assert.AreEqual(-1, item.Quality);
         }
@@ -62,7 +62,7 @@ namespace GildedRoseTest
         {
             Item item = new Item() { Quality = 7 };
 
-            GildedRose.GildedRose.IncreaseQualityUntil50(item);
+            ProcessBase.IncreaseQualityUntil50(item);
 
             Assert.AreEqual(8, item.Quality);
         }
@@ -74,7 +74,7 @@ namespace GildedRoseTest
         {
             Item item = new Item() { Quality = quality };
 
-            GildedRose.GildedRose.IncreaseQualityUntil50(item);
+            ProcessBase.IncreaseQualityUntil50(item);
 
             Assert.AreEqual(quality, item.Quality);
         }
