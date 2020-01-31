@@ -24,19 +24,17 @@ namespace GildedRose
                 else
                 {
                     IncreaseQualityUntil50(item);
-                    if (item.Quality < 50)
+                    if (IsBackstagePass(item.Name))
                     {
-                        if (IsBackstagePass(item.Name))
-                        {
-                            if (item.SellIn < 11)
-                            {
-                                IncreaseQualityUntil50(item);
-                            }
 
-                            if (item.SellIn < 6)
-                            {
-                                IncreaseQualityUntil50(item);
-                            }
+                        if (item.SellIn < 11)
+                        {
+                            IncreaseQualityUntil50(item);
+                        }
+
+                        if (item.SellIn < 6)
+                        {
+                            IncreaseQualityUntil50(item);
                         }
                     }
                 }
