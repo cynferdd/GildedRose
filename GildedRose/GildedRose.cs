@@ -21,43 +21,58 @@ namespace GildedRose
                 {
                     if (IsAgedBrie(item.Name))
                     {
-                        IncreaseQualityUntil50(item);
-                        if (item.SellIn <= 0)
-                        {
-                            IncreaseQualityUntil50(item);
-                        }
+                        UpdateWhenAgedBrie(item);
                     }
                     else if (IsBackstagePass(item.Name))
                     {
-                        if (item.SellIn <= 0)
-                        {
-                            item.Quality = 0;
-                        }
-                        else
-                        {
-                            IncreaseQualityUntil50(item);
-                            if (item.SellIn < 11)
-                            {
-                                IncreaseQualityUntil50(item);
-                            }
-
-                            if (item.SellIn < 6)
-                            {
-                                IncreaseQualityUntil50(item);
-                            }
-                        }
+                        UpdateWhenBackstagePass(item);
                     }
                     else
                     {
-                        DecreaseQualityUntil0(item);
-                        if (item.SellIn <= 0)
-                        {
-                            DecreaseQualityUntil0(item);
-                        }
+                        UpdateWhenStandardItem(item);
                     }
-                
+
                     item.SellIn = item.SellIn - 1;
                 }
+            }
+        }
+
+        private static void UpdateWhenStandardItem(Item item)
+        {
+            DecreaseQualityUntil0(item);
+            if (item.SellIn <= 0)
+            {
+                DecreaseQualityUntil0(item);
+            }
+        }
+
+        private static void UpdateWhenBackstagePass(Item item)
+        {
+            if (item.SellIn <= 0)
+            {
+                item.Quality = 0;
+            }
+            else
+            {
+                IncreaseQualityUntil50(item);
+                if (item.SellIn < 11)
+                {
+                    IncreaseQualityUntil50(item);
+                }
+
+                if (item.SellIn < 6)
+                {
+                    IncreaseQualityUntil50(item);
+                }
+            }
+        }
+
+        private static void UpdateWhenAgedBrie(Item item)
+        {
+            IncreaseQualityUntil50(item);
+            if (item.SellIn <= 0)
+            {
+                IncreaseQualityUntil50(item);
             }
         }
 
