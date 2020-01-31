@@ -19,7 +19,6 @@ namespace GildedRose
                 Item item = Items[i];
                 if (!IsSulfuras(item.Name))
                 {
-
                     if (IsAgedBrie(item.Name))
                     {
                         IncreaseQualityUntil50(item);
@@ -50,15 +49,14 @@ namespace GildedRose
                     }
                     else
                     {
-                        DecreaseQualityIfApplicable(item);
+                        DecreaseQualityUntil0(item);
                         if (item.SellIn <= 0)
                         {
-                            DecreaseQualityIfApplicable(item);
+                            DecreaseQualityUntil0(item);
                         }
                     }
                 
                     item.SellIn = item.SellIn - 1;
-                    
                 }
             }
         }
@@ -71,7 +69,7 @@ namespace GildedRose
             }
         }
 
-        public static void DecreaseQualityIfApplicable(Item item)
+        public static void DecreaseQualityUntil0(Item item)
         {
             if (item.Quality > 0)
             {
