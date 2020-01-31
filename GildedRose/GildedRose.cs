@@ -17,27 +17,28 @@ namespace GildedRose
             for (var i = 0; i < Items.Count; i++)
             {
                 Item item = Items[i];
-                if (!IsAgedBrie(item.Name) && !IsBackstagePass(item.Name))
+                if (IsAgedBrie(item.Name))
                 {
-                    item.Quality = DecreaseQualityIfApplicable(item);
+                    IncreaseQualityUntil50(item);
+                }
+                else if (IsBackstagePass(item.Name))
+                {
+                    IncreaseQualityUntil50(item);
+                    if (item.SellIn < 11)
+                    {
+                        IncreaseQualityUntil50(item);
+                    }
+
+                    if (item.SellIn < 6)
+                    {
+                        IncreaseQualityUntil50(item);
+                    }
                 }
                 else
                 {
-                    IncreaseQualityUntil50(item);
-                    if (IsBackstagePass(item.Name))
-                    {
-
-                        if (item.SellIn < 11)
-                        {
-                            IncreaseQualityUntil50(item);
-                        }
-
-                        if (item.SellIn < 6)
-                        {
-                            IncreaseQualityUntil50(item);
-                        }
-                    }
+                    item.Quality = DecreaseQualityIfApplicable(item);
                 }
+                
 
                 if (!IsSulfuras(item.Name))
                 {
@@ -46,21 +47,19 @@ namespace GildedRose
 
                 if (item.SellIn < 0)
                 {
-                    if (!IsAgedBrie(item.Name))
-                    {
-                        if (!IsBackstagePass(item.Name))
-                        {
-                            item.Quality = DecreaseQualityIfApplicable(item);
-                        }
-                        else
-                        {
-                            item.Quality = 0;
-                        }
-                    }
-                    else
+                    if (IsAgedBrie(item.Name))
                     {
                         IncreaseQualityUntil50(item);
                     }
+                    else if (IsBackstagePass(item.Name))
+                    {
+                        item.Quality = 0;
+                    }
+                    else
+                    {
+                        item.Quality = DecreaseQualityIfApplicable(item);
+                    }
+                    
                 }
             }
         }
