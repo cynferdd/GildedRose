@@ -17,49 +17,50 @@ namespace GildedRose
             for (var i = 0; i < Items.Count; i++)
             {
                 Item item = Items[i];
-                if (IsAgedBrie(item.Name))
-                {
-                    IncreaseQualityUntil50(item);
-                }
-                else if (IsBackstagePass(item.Name))
-                {
-                    IncreaseQualityUntil50(item);
-                    if (item.SellIn < 11)
-                    {
-                        IncreaseQualityUntil50(item);
-                    }
-
-                    if (item.SellIn < 6)
-                    {
-                        IncreaseQualityUntil50(item);
-                    }
-                }
-                else
-                {
-                    item.Quality = DecreaseQualityIfApplicable(item);
-                }
-                
-
                 if (!IsSulfuras(item.Name))
                 {
-                    item.SellIn = item.SellIn - 1;
-                }
 
-                if (item.SellIn < 0)
-                {
                     if (IsAgedBrie(item.Name))
                     {
                         IncreaseQualityUntil50(item);
                     }
                     else if (IsBackstagePass(item.Name))
                     {
-                        item.Quality = 0;
+                        IncreaseQualityUntil50(item);
+                        if (item.SellIn < 11)
+                        {
+                            IncreaseQualityUntil50(item);
+                        }
+
+                        if (item.SellIn < 6)
+                        {
+                            IncreaseQualityUntil50(item);
+                        }
                     }
                     else
                     {
-                        item.Quality = DecreaseQualityIfApplicable(item);
+                        DecreaseQualityIfApplicable(item);
                     }
+                
+                    item.SellIn = item.SellIn - 1;
                     
+                    if (item.SellIn < 0)
+                    {
+                        if (IsAgedBrie(item.Name))
+                        {
+                            IncreaseQualityUntil50(item);
+                        }
+                        else if (IsBackstagePass(item.Name))
+                        {
+                            item.Quality = 0;
+                        }
+                        else
+                        {
+                            DecreaseQualityIfApplicable(item);
+                        }
+                    
+                    }
+
                 }
             }
         }
@@ -72,22 +73,15 @@ namespace GildedRose
             }
         }
 
-        public static int DecreaseQualityIfApplicable(Item item)
+        public static void DecreaseQualityIfApplicable(Item item)
         {
-            if (ShouldDecreaseQuality(item))
+            if (item.Quality > 0)
             {
-                return item.Quality - 1;
-            }
-            else
-            {
-                return item.Quality;
+                item.Quality = item.Quality - 1;
             }
         }
 
-        public static bool ShouldDecreaseQuality(Item item)
-        {
-            return item.Quality > 0 && !IsSulfuras(item.Name);
-        }
+        
 
         public static bool IsAgedBrie(string name)
         {
