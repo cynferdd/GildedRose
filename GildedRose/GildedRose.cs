@@ -23,44 +23,42 @@ namespace GildedRose
                     if (IsAgedBrie(item.Name))
                     {
                         IncreaseQualityUntil50(item);
+                        if (item.SellIn <= 0)
+                        {
+                            IncreaseQualityUntil50(item);
+                        }
                     }
                     else if (IsBackstagePass(item.Name))
                     {
-                        IncreaseQualityUntil50(item);
-                        if (item.SellIn < 11)
-                        {
-                            IncreaseQualityUntil50(item);
-                        }
-
-                        if (item.SellIn < 6)
-                        {
-                            IncreaseQualityUntil50(item);
-                        }
-                    }
-                    else
-                    {
-                        DecreaseQualityIfApplicable(item);
-                    }
-                
-                    item.SellIn = item.SellIn - 1;
-                    
-                    if (item.SellIn < 0)
-                    {
-                        if (IsAgedBrie(item.Name))
-                        {
-                            IncreaseQualityUntil50(item);
-                        }
-                        else if (IsBackstagePass(item.Name))
+                        if (item.SellIn <= 0)
                         {
                             item.Quality = 0;
                         }
                         else
                         {
+                            IncreaseQualityUntil50(item);
+                            if (item.SellIn < 11)
+                            {
+                                IncreaseQualityUntil50(item);
+                            }
+
+                            if (item.SellIn < 6)
+                            {
+                                IncreaseQualityUntil50(item);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        DecreaseQualityIfApplicable(item);
+                        if (item.SellIn <= 0)
+                        {
                             DecreaseQualityIfApplicable(item);
                         }
-                    
                     }
-
+                
+                    item.SellIn = item.SellIn - 1;
+                    
                 }
             }
         }
