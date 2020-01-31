@@ -10,6 +10,7 @@ namespace GildedRose
         private readonly ProcessBase agedBrie;
         private readonly ProcessBase backstagePass;
         private readonly ProcessBase standardItem;
+        private readonly ProcessBase sulfuras;
 
         public GildedRose(IList<Item> Items)
         {
@@ -17,6 +18,7 @@ namespace GildedRose
             agedBrie = new AgedBrieProcess();
             backstagePass = new BackstagePassProcess();
             standardItem = new StandardProcess();
+            sulfuras = new SulfurasProcess();
         }
 
         public void UpdateQuality()
@@ -24,13 +26,13 @@ namespace GildedRose
             for (var i = 0; i < Items.Count; i++)
             {
                 Item item = Items[i];
-                if (!IsSulfuras(item.Name))
+                if (item.Name != sulfuras.Name)
                 {
-                    if (IsAgedBrie(item.Name))
+                    if (item.Name == agedBrie.Name)
                     {
                         agedBrie.Update(item);
                     }
-                    else if (IsBackstagePass(item.Name))
+                    else if (item.Name == backstagePass.Name)
                     {
                         backstagePass.Update(item);
                     }
@@ -45,19 +47,5 @@ namespace GildedRose
         }
 
         
-        public static bool IsAgedBrie(string name)
-        {
-            return name == "Aged Brie";
-        }
-
-        public static bool IsBackstagePass(string name)
-        {
-            return name == "Backstage passes to a TAFKAL80ETC concert";
-        }
-
-        public static bool IsSulfuras(string name)
-        {
-            return name == "Sulfuras, Hand of Ragnaros";
-        }
     }
 }

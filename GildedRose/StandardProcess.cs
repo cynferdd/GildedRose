@@ -6,6 +6,8 @@ namespace GildedRose
 {
     public class StandardProcess : ProcessBase
     {
+        public override string Name { get { return ""; } }
+
         public override void Update(Item item)
         {
             DecreaseQualityUntil0(item);

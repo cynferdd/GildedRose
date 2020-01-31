@@ -23,6 +23,7 @@ namespace GildedRose
         }
 
         public abstract void Update(Item item);
-        
+
+        public abstract string Name { get; }
     }
 }

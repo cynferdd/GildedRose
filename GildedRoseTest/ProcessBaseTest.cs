@@ -6,7 +6,7 @@ using System.Text;
 
 namespace GildedRoseTest
 {
-    public class GeneralRulesTest
+    public class ProcessBaseTest
     {       
 
         [Test]
